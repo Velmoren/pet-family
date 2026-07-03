@@ -1,0 +1,17 @@
+﻿services:
+  postgres:
+    container_name: postgres
+    image: postgres:18 # Рекомендуется жестко зафиксировать версию, чтобы она не ломалась в будущем при обновлениях
+    restart: always
+    environment:
+      POSTGRES_DB: pet_family
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5433:5432
+    volumes:
+      # ИЗМЕНЕНО: убрали /data на конце, как требует новый стандарт
+      - postgres-data:/var/lib/postgresql
+
+volumes:
+  postgres-data:
