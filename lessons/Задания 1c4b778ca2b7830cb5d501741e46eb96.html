@@ -1,0 +1,767 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Задания</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+/* Override strong tags inside headings to maintain consistent weight */
+h1 strong,
+h2 strong,
+h3 strong {
+	font-weight: 600;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 10px;
+	padding: 1rem;
+}
+
+/* For default-background callouts, render the border outline. */
+.callout.block-color-default_background {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+figure,
+aside,
+details {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+
+	table.collection-content {
+		width: 100%;
+		table-layout: fixed;
+	}
+
+	table.collection-content th,
+	table.collection-content td {
+		overflow-wrap: anywhere;
+	}
+
+	table.collection-content td > .user,
+	table.collection-content td > time {
+		white-space: pre-wrap;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content-wrapper {
+	overflow-x: auto;
+}
+
+@media only print {
+	.collection-content-wrapper {
+		overflow-x: visible;
+	}
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.collection-content td {
+	white-space: pre-wrap;
+	word-break: break-word;
+}
+
+.column-list {
+	display: flex;
+	gap: 46px;
+}
+
+.column {
+	min-width: 0;
+	overflow: hidden;
+}
+
+.column > *:first-child {
+	margin-top: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding-inline: 0.125rem;
+	padding-block: 0.375rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+table {
+	border-collapse: collapse;
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol.numbered-list.numbered-list-digits-2 {
+	padding-inline-start: 2em;
+}
+
+ol.numbered-list.numbered-list-digits-3plus {
+	padding-inline-start: 2.4em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+/*
+ * Render emoji icons using a ::before pseudo-element to keep the glyph
+ * out of the DOM textContent traversal. This avoids double-rendering icons
+ * in callouts and page titles.
+ * NOTE(slim/html-export-pseudo-icons): I can't tagref this because it will
+ * flag as a duplicate tag after codegen.
+ */
+.icon[data-emoji]::before {
+	content: attr(data-emoji);
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.callout img.notion-static-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.callout p {
+	margin: 0;
+}
+
+.callout h1,
+.callout h2,
+.callout h3 {
+	margin: 0 0 0.6rem;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	margin-right: 0.4em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+blockquote.quote-large {
+	font-size: 1.25em;
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.tab {
+	margin: 1.25em 0;
+	padding-inline: 1rem;
+	border: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", "Noto Sans Arabic", "Noto Sans Hebrew", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.highlight-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.highlight-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.highlight-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.highlight-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.highlight-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.highlight-default_background {
+	color: rgba(44, 44, 43, 1);
+}
+.highlight-gray_background {
+	background: rgba(42, 28, 0, 0.07);
+}
+.highlight-brown_background {
+	background: rgba(139, 46, 0, 0.086);
+}
+.highlight-orange_background {
+	background: rgba(224, 101, 1, 0.129);
+}
+.highlight-yellow_background {
+	background: rgba(211, 168, 0, 0.137);
+}
+.highlight-teal_background {
+	background: rgba(0, 100, 45, 0.09);
+}
+.highlight-blue_background {
+	background: rgba(0, 124, 215, 0.094);
+}
+.highlight-purple_background {
+	background: rgba(102, 0, 178, 0.078);
+}
+.highlight-pink_background {
+	background: rgba(197, 0, 93, 0.086);
+}
+.highlight-red_background {
+	background: rgba(223, 22, 0, 0.094);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(125, 122, 117, 1);
+	fill: rgba(125, 122, 117, 1);
+}
+.block-color-brown {
+	color: rgba(159, 118, 90, 1);
+	fill: rgba(159, 118, 90, 1);
+}
+.block-color-orange {
+	color: rgba(210, 123, 45, 1);
+	fill: rgba(210, 123, 45, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 148, 52, 1);
+	fill: rgba(203, 148, 52, 1);
+}
+.block-color-teal {
+	color: rgba(80, 148, 110, 1);
+	fill: rgba(80, 148, 110, 1);
+}
+.block-color-blue {
+	color: rgba(56, 125, 201, 1);
+	fill: rgba(56, 125, 201, 1);
+}
+.block-color-purple {
+	color: rgba(154, 107, 180, 1);
+	fill: rgba(154, 107, 180, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(207, 81, 72, 1);
+	fill: rgba(207, 81, 72, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(240, 239, 237, 1);
+}
+.block-color-brown_background {
+	background: rgba(245, 237, 233, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 235, 222, 1);
+}
+.block-color-yellow_background {
+	background: rgba(249, 243, 220, 1);
+}
+.block-color-teal_background {
+	background: rgba(232, 241, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(229, 242, 252, 1);
+}
+.block-color-purple_background {
+	background: rgba(243, 235, 249, 1);
+}
+.block-color-pink_background {
+	background: rgba(250, 233, 241, 1);
+}
+.block-color-red_background {
+	background: rgba(252, 233, 231, 1);
+}
+.select-value-color-default { background-color: rgba(42, 28, 0, 0.07); }
+.select-value-color-gray { background-color: rgba(28, 19, 1, 0.11); }
+.select-value-color-brown { background-color: rgba(127, 51, 0, 0.156); }
+.select-value-color-orange { background-color: rgba(196, 88, 0, 0.203); }
+.select-value-color-yellow { background-color: rgba(209, 156, 0, 0.282); }
+.select-value-color-green { background-color: rgba(0, 96, 38, 0.156); }
+.select-value-color-blue { background-color: rgba(0, 118, 217, 0.203); }
+.select-value-color-purple { background-color: rgba(92, 0, 163, 0.141); }
+.select-value-color-pink { background-color: rgba(183, 0, 78, 0.152); }
+.select-value-color-red { background-color: rgba(206, 24, 0, 0.164); }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style><style>@import url('https://cdn.jsdelivr.net/npm/katex@0.16.25/dist/katex-swap.min.css')</style></head><body><article id="1c4b778c-a2b7-830c-b5d5-01741e46eb96" class="page sans"><header><h1 class="page-title" dir="auto">Задания</h1><p class="page-description" dir="auto"></p></header><div class="page-body"><div class="collection-content-wrapper"><table class="collection-content"><colgroup><col style="width:100%"/></colgroup><thead><tr><th><span class="icon property-icon"><img src="https://app.notion.com/icons/font_gray.svg" style="width:14px;height:14px;display:block"/></span>Задача №</th></tr></thead><tbody><tr id="d55b778c-a2b7-83b0-96fb-01be0dd36996"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-1%20d55b778ca2b783b096fb01be0dd36996.html" data-notion-page-id="d55b778c-a2b7-83b0-96fb-01be0dd36996" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-1</a></td></tr><tr id="8fdb778c-a2b7-8396-ab3d-81c0454217e1"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-2%208fdb778ca2b78396ab3d81c0454217e1.html" data-notion-page-id="8fdb778c-a2b7-8396-ab3d-81c0454217e1" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-2</a></td></tr><tr id="966b778c-a2b7-839a-a785-815df1faf820"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-3%20966b778ca2b7839aa785815df1faf820.html" data-notion-page-id="966b778c-a2b7-839a-a785-815df1faf820" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-3</a></td></tr><tr id="1fdb778c-a2b7-83ca-ba53-0152145b7065"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-4%201fdb778ca2b783caba530152145b7065.html" data-notion-page-id="1fdb778c-a2b7-83ca-ba53-0152145b7065" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-4</a></td></tr><tr id="328b778c-a2b7-8240-bed3-810258651036"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-4%201%20328b778ca2b78240bed3810258651036.html" data-notion-page-id="328b778c-a2b7-8240-bed3-810258651036" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-4.1</a></td></tr><tr id="1f2b778c-a2b7-8320-9cce-812867c4394b"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-4%202%201f2b778ca2b783209cce812867c4394b.html" data-notion-page-id="1f2b778c-a2b7-8320-9cce-812867c4394b" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-4.2</a></td></tr><tr id="98bb778c-a2b7-8264-857d-812d3375e9ca"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-4%203%2098bb778ca2b78264857d812d3375e9ca.html" data-notion-page-id="98bb778c-a2b7-8264-857d-812d3375e9ca" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-4.3</a></td></tr><tr id="500b778c-a2b7-82b1-a6e6-0174118a501d"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-4%204%20500b778ca2b782b1a6e60174118a501d.html" data-notion-page-id="500b778c-a2b7-82b1-a6e6-0174118a501d" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-4.4</a></td></tr><tr id="447b778c-a2b7-82f6-9e31-81897aade06a"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-5%20447b778ca2b782f69e3181897aade06a.html" data-notion-page-id="447b778c-a2b7-82f6-9e31-81897aade06a" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-5</a></td></tr><tr id="aa0b778c-a2b7-83f2-87f3-8139431e718f"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-5%201%20aa0b778ca2b783f287f38139431e718f.html" data-notion-page-id="aa0b778c-a2b7-83f2-87f3-8139431e718f" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-5.1</a></td></tr><tr id="c1eb778c-a2b7-8343-b302-0176ff58a105"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-5%202%20c1eb778ca2b78343b3020176ff58a105.html" data-notion-page-id="c1eb778c-a2b7-8343-b302-0176ff58a105" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-5.2</a></td></tr><tr id="496b778c-a2b7-839a-b65e-812a0b9c99c7"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-5%203%20496b778ca2b7839ab65e812a0b9c99c7.html" data-notion-page-id="496b778c-a2b7-839a-b65e-812a0b9c99c7" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-5.3</a></td></tr><tr id="0b0b778c-a2b7-834a-ad9f-81ed64dc8e0b"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-5%204%200b0b778ca2b7834aad9f81ed64dc8e0b.html" data-notion-page-id="0b0b778c-a2b7-834a-ad9f-81ed64dc8e0b" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-5.4</a></td></tr><tr id="d3cb778c-a2b7-83c2-9460-81cc281a1f39"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-5%205%20d3cb778ca2b783c2946081cc281a1f39.html" data-notion-page-id="d3cb778c-a2b7-83c2-9460-81cc281a1f39" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-5.5</a></td></tr><tr id="a23b778c-a2b7-825a-9e5b-01f7f5ece6e6"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-6%20a23b778ca2b7825a9e5b01f7f5ece6e6.html" data-notion-page-id="a23b778c-a2b7-825a-9e5b-01f7f5ece6e6" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-6</a></td></tr><tr id="cd6b778c-a2b7-8388-95cf-8140f717c5f7"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-7%20cd6b778ca2b7838895cf8140f717c5f7.html" data-notion-page-id="cd6b778c-a2b7-8388-95cf-8140f717c5f7" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-7</a></td></tr><tr id="b8fb778c-a2b7-8356-ad23-818c5ecb8243"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-7%201%20b8fb778ca2b78356ad23818c5ecb8243.html" data-notion-page-id="b8fb778c-a2b7-8356-ad23-818c5ecb8243" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-7.1</a></td></tr><tr id="81eb778c-a2b7-83e1-83b3-019d86a3f08b"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-7%202%2081eb778ca2b783e183b3019d86a3f08b.html" data-notion-page-id="81eb778c-a2b7-83e1-83b3-019d86a3f08b" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-7.2</a></td></tr><tr id="b65b778c-a2b7-8211-9f46-01d948181625"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-8%20b65b778ca2b782119f4601d948181625.html" data-notion-page-id="b65b778c-a2b7-8211-9f46-01d948181625" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-8</a></td></tr><tr id="ac2b778c-a2b7-8325-a9db-815add006be4"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-9%20ac2b778ca2b78325a9db815add006be4.html" data-notion-page-id="ac2b778c-a2b7-8325-a9db-815add006be4" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-9</a></td></tr><tr id="8f4b778c-a2b7-826a-8a8d-01fcb2bca1d2"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-10%208f4b778ca2b7826a8a8d01fcb2bca1d2.html" data-notion-page-id="8f4b778c-a2b7-826a-8a8d-01fcb2bca1d2" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-10</a></td></tr><tr id="7e9b778c-a2b7-830b-b9f0-81029da8d698"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-10%201%207e9b778ca2b7830bb9f081029da8d698.html" data-notion-page-id="7e9b778c-a2b7-830b-b9f0-81029da8d698" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-10.1</a></td></tr><tr id="a96b778c-a2b7-827e-a53d-81db39dc70e8"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-11%20a96b778ca2b7827ea53d81db39dc70e8.html" data-notion-page-id="a96b778c-a2b7-827e-a53d-81db39dc70e8" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-11</a></td></tr><tr id="dbcb778c-a2b7-8305-b1a8-01fcc4b0f3d8"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-12%20dbcb778ca2b78305b1a801fcc4b0f3d8.html" data-notion-page-id="dbcb778c-a2b7-8305-b1a8-01fcc4b0f3d8" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-12</a></td></tr><tr id="a0bb778c-a2b7-820b-b529-8178c3b12974"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-1%20a0bb778ca2b7820bb5298178c3b12974.html" data-notion-page-id="a0bb778c-a2b7-820b-b529-8178c3b12974" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-1</a></td></tr><tr id="2c8b778c-a2b7-828c-8e44-01f20da0eb37"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-2%202c8b778ca2b7828c8e4401f20da0eb37.html" data-notion-page-id="2c8b778c-a2b7-828c-8e44-01f20da0eb37" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-2</a></td></tr><tr id="1d6b778c-a2b7-82e0-8c95-81c872cfb31f"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-2%201%201d6b778ca2b782e08c9581c872cfb31f.html" data-notion-page-id="1d6b778c-a2b7-82e0-8c95-81c872cfb31f" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-2.1</a></td></tr><tr id="4dab778c-a2b7-82b7-9a79-01d60ef9e115"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-2%202%204dab778ca2b782b79a7901d60ef9e115.html" data-notion-page-id="4dab778c-a2b7-82b7-9a79-01d60ef9e115" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-2.2</a></td></tr><tr id="35fb778c-a2b7-83fb-90e6-819a0f545175"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-3%2035fb778ca2b783fb90e6819a0f545175.html" data-notion-page-id="35fb778c-a2b7-83fb-90e6-819a0f545175" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-3</a></td></tr><tr id="d46b778c-a2b7-836b-b12e-81f8aa627d65"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-4%20d46b778ca2b7836bb12e81f8aa627d65.html" data-notion-page-id="d46b778c-a2b7-836b-b12e-81f8aa627d65" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-4</a></td></tr><tr id="13bb778c-a2b7-824e-98e6-014e7716fef2"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-5%2013bb778ca2b7824e98e6014e7716fef2.html" data-notion-page-id="13bb778c-a2b7-824e-98e6-014e7716fef2" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-5</a></td></tr><tr id="7c2b778c-a2b7-824e-bc2c-014d486b9ac5"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-6%207c2b778ca2b7824ebc2c014d486b9ac5.html" data-notion-page-id="7c2b778c-a2b7-824e-bc2c-014d486b9ac5" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-6</a></td></tr><tr id="b77b778c-a2b7-8232-93fb-81fef0424454"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-7%20b77b778ca2b7823293fb81fef0424454.html" data-notion-page-id="b77b778c-a2b7-8232-93fb-81fef0424454" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-7</a></td></tr><tr id="5fbb778c-a2b7-828a-8e02-01d1b40648a4"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-8%205fbb778ca2b7828a8e0201d1b40648a4.html" data-notion-page-id="5fbb778c-a2b7-828a-8e02-01d1b40648a4" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-8</a></td></tr><tr id="3d4b778c-a2b7-8248-9e16-016922473885"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-9%203d4b778ca2b782489e16016922473885.html" data-notion-page-id="3d4b778c-a2b7-8248-9e16-016922473885" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-9</a></td></tr><tr id="f45b778c-a2b7-8241-b6c6-818bfae016a6"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-10%20f45b778ca2b78241b6c6818bfae016a6.html" data-notion-page-id="f45b778c-a2b7-8241-b6c6-818bfae016a6" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-10</a></td></tr><tr id="a8ab778c-a2b7-821d-88ac-01a07ab18b6f"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-11%20a8ab778ca2b7821d88ac01a07ab18b6f.html" data-notion-page-id="a8ab778c-a2b7-821d-88ac-01a07ab18b6f" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-11</a></td></tr><tr id="94eb778c-a2b7-82b4-a730-816e80083680"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-12%2094eb778ca2b782b4a730816e80083680.html" data-notion-page-id="94eb778c-a2b7-82b4-a730-816e80083680" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-12</a></td></tr><tr id="925b778c-a2b7-83b3-9c00-81a88be0596d"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-13%20925b778ca2b783b39c0081a88be0596d.html" data-notion-page-id="925b778c-a2b7-83b3-9c00-81a88be0596d" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-13</a></td></tr><tr id="30bb778c-a2b7-8268-a612-01190ade335a"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-14%2030bb778ca2b78268a61201190ade335a.html" data-notion-page-id="30bb778c-a2b7-8268-a612-01190ade335a" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-14</a></td></tr><tr id="e73b778c-a2b7-8287-9ebc-81513e27a07a"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-15%20e73b778ca2b782879ebc81513e27a07a.html" data-notion-page-id="e73b778c-a2b7-8287-9ebc-81513e27a07a" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-15</a></td></tr><tr id="345b778c-a2b7-83d0-b37d-819c0f83fa1c"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-16%20345b778ca2b783d0b37d819c0f83fa1c.html" data-notion-page-id="345b778c-a2b7-83d0-b37d-819c0f83fa1c" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-16</a></td></tr><tr id="43bb778c-a2b7-82ef-8c96-813776ee69da"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-17%2043bb778ca2b782ef8c96813776ee69da.html" data-notion-page-id="43bb778c-a2b7-82ef-8c96-813776ee69da" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-17</a></td></tr><tr id="c86b778c-a2b7-8251-a692-81e44ad365f0"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-18%20c86b778ca2b78251a69281e44ad365f0.html" data-notion-page-id="c86b778c-a2b7-8251-a692-81e44ad365f0" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-18</a></td></tr><tr id="386b778c-a2b7-8230-89a1-01f0c88dfe24"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-19%20386b778ca2b7823089a101f0c88dfe24.html" data-notion-page-id="386b778c-a2b7-8230-89a1-01f0c88dfe24" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-19</a></td></tr><tr id="185b778c-a2b7-829d-aed4-01f735dc704e"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-20%20185b778ca2b7829daed401f735dc704e.html" data-notion-page-id="185b778c-a2b7-829d-aed4-01f735dc704e" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-20</a></td></tr><tr id="e3db778c-a2b7-82c2-966d-01a8df2d1acc"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-21%20e3db778ca2b782c2966d01a8df2d1acc.html" data-notion-page-id="e3db778c-a2b7-82c2-966d-01a8df2d1acc" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-21</a></td></tr><tr id="9f5b778c-a2b7-826a-b96c-8155bd0fb5f6"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-22%209f5b778ca2b7826ab96c8155bd0fb5f6.html" data-notion-page-id="9f5b778c-a2b7-826a-b96c-8155bd0fb5f6" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-22</a></td></tr><tr id="481b778c-a2b7-8360-9d5a-01a159192c59"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-23%20481b778ca2b783609d5a01a159192c59.html" data-notion-page-id="481b778c-a2b7-8360-9d5a-01a159192c59" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-23</a></td></tr><tr id="e72b778c-a2b7-8211-8548-8145155821f1"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-24%20e72b778ca2b7821185488145155821f1.html" data-notion-page-id="e72b778c-a2b7-8211-8548-8145155821f1" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-24</a></td></tr><tr id="501b778c-a2b7-8291-884a-81f5ef391341"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-25%20501b778ca2b78291884a81f5ef391341.html" data-notion-page-id="501b778c-a2b7-8291-884a-81f5ef391341" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-25</a></td></tr><tr id="066b778c-a2b7-83ab-a83a-81329e7e5d6f"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-26%20066b778ca2b783aba83a81329e7e5d6f.html" data-notion-page-id="066b778c-a2b7-83ab-a83a-81329e7e5d6f" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-26</a></td></tr><tr id="f94b778c-a2b7-82fe-8c4b-81f4933dd0f3"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-27%20f94b778ca2b782fe8c4b81f4933dd0f3.html" data-notion-page-id="f94b778c-a2b7-82fe-8c4b-81f4933dd0f3" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-27</a></td></tr><tr id="b09b778c-a2b7-83a7-a570-813281a5180c"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%A4-28%20b09b778ca2b783a7a570813281a5180c.html" data-notion-page-id="b09b778c-a2b7-83a7-a570-813281a5180c" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Ф-28</a></td></tr><tr id="aacb778c-a2b7-8231-9513-0191b89703da"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-13%20aacb778ca2b7823195130191b89703da.html" data-notion-page-id="aacb778c-a2b7-8231-9513-0191b89703da" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-13</a></td></tr><tr id="fd6b778c-a2b7-838a-bc4b-0185c930e5af"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-13%201%20fd6b778ca2b7838abc4b0185c930e5af.html" data-notion-page-id="fd6b778c-a2b7-838a-bc4b-0185c930e5af" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-13.1</a></td></tr><tr id="facb778c-a2b7-8367-8abc-81df9bc123ce"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-14%20facb778ca2b783678abc81df9bc123ce.html" data-notion-page-id="facb778c-a2b7-8367-8abc-81df9bc123ce" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-14</a></td></tr><tr id="54eb778c-a2b7-83d6-80fb-01a564c39ffe"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-15%2054eb778ca2b783d680fb01a564c39ffe.html" data-notion-page-id="54eb778c-a2b7-83d6-80fb-01a564c39ffe" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-15</a></td></tr><tr id="79ab778c-a2b7-82f3-864e-812897171057"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-16%2079ab778ca2b782f3864e812897171057.html" data-notion-page-id="79ab778c-a2b7-82f3-864e-812897171057" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-16</a></td></tr><tr id="512b778c-a2b7-8211-8a67-81f5cf01d598"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-17%20512b778ca2b782118a6781f5cf01d598.html" data-notion-page-id="512b778c-a2b7-8211-8a67-81f5cf01d598" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-17</a></td></tr><tr id="a0ab778c-a2b7-8323-a863-01d7c03c6f24"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-18%20a0ab778ca2b78323a86301d7c03c6f24.html" data-notion-page-id="a0ab778c-a2b7-8323-a863-01d7c03c6f24" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-18</a></td></tr><tr id="554b778c-a2b7-8345-abe0-0182a12134e9"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-19%20554b778ca2b78345abe00182a12134e9.html" data-notion-page-id="554b778c-a2b7-8345-abe0-0182a12134e9" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-19</a></td></tr><tr id="3feb778c-a2b7-836c-b786-812d9e5fcffb"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-20%203feb778ca2b7836cb786812d9e5fcffb.html" data-notion-page-id="3feb778c-a2b7-836c-b786-812d9e5fcffb" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-20</a></td></tr><tr id="791b778c-a2b7-8260-9796-01e1944b1150"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-20%202%20791b778ca2b78260979601e1944b1150.html" data-notion-page-id="791b778c-a2b7-8260-9796-01e1944b1150" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-20.2</a></td></tr><tr id="ed0b778c-a2b7-83d0-a127-81bcd7973a32"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-21%20ed0b778ca2b783d0a12781bcd7973a32.html" data-notion-page-id="ed0b778c-a2b7-83d0-a127-81bcd7973a32" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-21</a></td></tr><tr id="aa3b778c-a2b7-821e-82fe-8164017dc131"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-22%20aa3b778ca2b7821e82fe8164017dc131.html" data-notion-page-id="aa3b778c-a2b7-821e-82fe-8164017dc131" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-22</a></td></tr><tr id="761b778c-a2b7-82aa-ac52-019f46d9ff78"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-23%20761b778ca2b782aaac52019f46d9ff78.html" data-notion-page-id="761b778c-a2b7-82aa-ac52-019f46d9ff78" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-23</a></td></tr><tr id="c28b778c-a2b7-831d-9bfd-01d7716e4f75"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-24%20c28b778ca2b7831d9bfd01d7716e4f75.html" data-notion-page-id="c28b778c-a2b7-831d-9bfd-01d7716e4f75" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-24</a></td></tr><tr id="9a5b778c-a2b7-8232-96e9-815869e10f22"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-25%209a5b778ca2b7823296e9815869e10f22.html" data-notion-page-id="9a5b778c-a2b7-8232-96e9-815869e10f22" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-25</a></td></tr><tr id="3c4b778c-a2b7-8280-a27f-81b92b764065"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-26%203c4b778ca2b78280a27f81b92b764065.html" data-notion-page-id="3c4b778c-a2b7-8280-a27f-81b92b764065" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-26</a></td></tr><tr id="988b778c-a2b7-82bf-bce6-81555951eb77"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-27%20988b778ca2b782bfbce681555951eb77.html" data-notion-page-id="988b778c-a2b7-82bf-bce6-81555951eb77" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-27</a></td></tr><tr id="40eb778c-a2b7-8334-a171-01ecb585c6b5"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-28%2040eb778ca2b78334a17101ecb585c6b5.html" data-notion-page-id="40eb778c-a2b7-8334-a171-01ecb585c6b5" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-28</a></td></tr><tr id="cb1b778c-a2b7-83a1-9d8e-01cd8455ddf9"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-28%201%20cb1b778ca2b783a19d8e01cd8455ddf9.html" data-notion-page-id="cb1b778c-a2b7-83a1-9d8e-01cd8455ddf9" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-28.1</a></td></tr><tr id="7f9b778c-a2b7-8201-a319-01e40e977459"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-28%202%207f9b778ca2b78201a31901e40e977459.html" data-notion-page-id="7f9b778c-a2b7-8201-a319-01e40e977459" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-28.2</a></td></tr><tr id="80bb778c-a2b7-82ba-94b9-019d29472a17"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-28%203%2080bb778ca2b782ba94b9019d29472a17.html" data-notion-page-id="80bb778c-a2b7-82ba-94b9-019d29472a17" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-28.3</a></td></tr><tr id="a59b778c-a2b7-83d0-b4bc-01ba0e18a438"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-28%204%20a59b778ca2b783d0b4bc01ba0e18a438.html" data-notion-page-id="a59b778c-a2b7-83d0-b4bc-01ba0e18a438" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-28.4</a></td></tr><tr id="98fb778c-a2b7-8239-8769-01e7f7a0785e"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-28%205%2098fb778ca2b78239876901e7f7a0785e.html" data-notion-page-id="98fb778c-a2b7-8239-8769-01e7f7a0785e" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-28.5</a></td></tr><tr id="c38b778c-a2b7-83cd-b0b3-019e168adfd1"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-28%206%20c38b778ca2b783cdb0b3019e168adfd1.html" data-notion-page-id="c38b778c-a2b7-83cd-b0b3-019e168adfd1" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-28.6</a></td></tr><tr id="fbfb778c-a2b7-82a0-960f-01432e7fe673"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-28%207%20fbfb778ca2b782a0960f01432e7fe673.html" data-notion-page-id="fbfb778c-a2b7-82a0-960f-01432e7fe673" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-28.7</a></td></tr><tr id="cfcb778c-a2b7-8365-aab4-81278c1bc430"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-28%208%20cfcb778ca2b78365aab481278c1bc430.html" data-notion-page-id="cfcb778c-a2b7-8365-aab4-81278c1bc430" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-28.8</a></td></tr><tr id="5d0b778c-a2b7-8235-b655-0119afa5c4c3"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-28%209%205d0b778ca2b78235b6550119afa5c4c3.html" data-notion-page-id="5d0b778c-a2b7-8235-b655-0119afa5c4c3" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-28.9</a></td></tr><tr id="3d6b778c-a2b7-82fe-9ff3-81fdc34d7faa"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-28%2010%203d6b778ca2b782fe9ff381fdc34d7faa.html" data-notion-page-id="3d6b778c-a2b7-82fe-9ff3-81fdc34d7faa" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-28.10</a></td></tr><tr id="fd5b778c-a2b7-839c-8fa2-814031ca1e14"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-28%2011%20fd5b778ca2b7839c8fa2814031ca1e14.html" data-notion-page-id="fd5b778c-a2b7-839c-8fa2-814031ca1e14" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-28.11</a></td></tr><tr id="0c8b778c-a2b7-83d5-9465-01045adf37b4"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-28%2012%200c8b778ca2b783d5946501045adf37b4.html" data-notion-page-id="0c8b778c-a2b7-83d5-9465-01045adf37b4" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-28.12</a></td></tr><tr id="19bb778c-a2b7-8381-a660-01e76ce8b532"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-28%2013%2019bb778ca2b78381a66001e76ce8b532.html" data-notion-page-id="19bb778c-a2b7-8381-a660-01e76ce8b532" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-28.13</a></td></tr><tr id="d42b778c-a2b7-8295-a6ef-01404d61afb1"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-29%20d42b778ca2b78295a6ef01404d61afb1.html" data-notion-page-id="d42b778c-a2b7-8295-a6ef-01404d61afb1" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-29</a></td></tr><tr id="f6ab778c-a2b7-8307-9ed5-819095b7d569"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-30%20f6ab778ca2b783079ed5819095b7d569.html" data-notion-page-id="f6ab778c-a2b7-8307-9ed5-819095b7d569" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-30</a></td></tr><tr id="56fb778c-a2b7-8359-91ad-81490e8ac13d"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-31%2056fb778ca2b7835991ad81490e8ac13d.html" data-notion-page-id="56fb778c-a2b7-8359-91ad-81490e8ac13d" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-31</a></td></tr><tr id="551b778c-a2b7-82b7-985f-81b4fa4dd0dc"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-32%20551b778ca2b782b7985f81b4fa4dd0dc.html" data-notion-page-id="551b778c-a2b7-82b7-985f-81b4fa4dd0dc" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-32</a></td></tr><tr id="766b778c-a2b7-82cf-a4c4-8158ec255b45"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-33%20766b778ca2b782cfa4c48158ec255b45.html" data-notion-page-id="766b778c-a2b7-82cf-a4c4-8158ec255b45" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-33</a></td></tr><tr id="b93b778c-a2b7-82ac-aa1c-81357799d8ab"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-33%201%20b93b778ca2b782acaa1c81357799d8ab.html" data-notion-page-id="b93b778c-a2b7-82ac-aa1c-81357799d8ab" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-33.1</a></td></tr><tr id="2fbb778c-a2b7-821f-b678-81b48888d98b"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-34%202fbb778ca2b7821fb67881b48888d98b.html" data-notion-page-id="2fbb778c-a2b7-821f-b678-81b48888d98b" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-34</a></td></tr><tr id="ff3b778c-a2b7-83e4-a229-815dca16e3e1"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-35%20ff3b778ca2b783e4a229815dca16e3e1.html" data-notion-page-id="ff3b778c-a2b7-83e4-a229-815dca16e3e1" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-35</a></td></tr><tr id="b5ab778c-a2b7-8332-8124-81a556c5bc60"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-36%20b5ab778ca2b78332812481a556c5bc60.html" data-notion-page-id="b5ab778c-a2b7-8332-8124-81a556c5bc60" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-36</a></td></tr><tr id="123b778c-a2b7-8269-afd6-81495eb2a28c"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-37%20123b778ca2b78269afd681495eb2a28c.html" data-notion-page-id="123b778c-a2b7-8269-afd6-81495eb2a28c" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-37</a></td></tr><tr id="378b778c-a2b7-833f-ae78-01365278d381"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-38%20378b778ca2b7833fae7801365278d381.html" data-notion-page-id="378b778c-a2b7-833f-ae78-01365278d381" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-38</a></td></tr><tr id="37cb778c-a2b7-82a8-b61b-814fdb12b1bc"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%94%D0%BE%D1%81%D1%82%D0%B8%D0%B6%D0%B5%D0%BD%D0%B8%D1%8F%20%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D1%82%D0%B5%D0%BB%D0%B5%D0%B9%2037cb778ca2b782a8b61b814fdb12b1bc.html" data-notion-page-id="37cb778c-a2b7-82a8-b61b-814fdb12b1bc" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Достижения пользователей</a></td></tr><tr id="8eab778c-a2b7-82c6-a162-817b89fafb59"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%9F%D0%B5%D1%80%D0%B5%D0%B4%D0%B5%D1%80%D0%B6%D0%BA%D0%B0%20%D0%B6%D0%B8%D0%B2%D0%BE%D1%82%D0%BD%D0%BE%D0%B3%D0%BE%208eab778ca2b782c6a162817b89fafb59.html" data-notion-page-id="8eab778c-a2b7-82c6-a162-817b89fafb59" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Передержка животного</a></td></tr><tr id="d1fb778c-a2b7-8227-b400-818e61e02b86"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-1%201%20d1fb778ca2b78227b400818e61e02b86.html" data-notion-page-id="d1fb778c-a2b7-8227-b400-818e61e02b86" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-1.1</a></td></tr><tr id="03ab778c-a2b7-83b7-a28e-017344464efb"><td class="cell-title"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D1%8F/%D0%91-18%2003ab778ca2b783b7a28e017344464efb.html" data-notion-page-id="03ab778c-a2b7-83b7-a28e-017344464efb" data-notion-space-id="8687b49c-08c4-48fc-867a-6df04fbbdaa7">Б-18</a></td></tr></tbody></table></div><br/><br/></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
