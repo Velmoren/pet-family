@@ -1,32 +1,36 @@
 ﻿using CSharpFunctionalExtensions;
-using PetFamily.Domain.Emuns;
-using PetFamily.Domain.Shared;
+using PetFamily.Domain.Enums;
 using PetFamily.Domain.ValueObjects;
+
+using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.Volunteers.PetId>;
 
 namespace PetFamily.Domain.Volunteers;
 
-public class Pet : Shared.Entity<BaseId>
+public class Pet : Entity
 {
     private readonly List<PaymentRequisite> _donationDetails = [];
     
     private readonly List<PetPhoto> _petPhotos = [];
     
-    private Pet(BaseId petId) : base(petId)
+    private Pet(PetId petId) : base(petId)
     {
     }
     
-    private Pet(BaseId petId, string name, string description) : base(petId)
+    private Pet(PetId petId, string name, string description) : base(petId)
     {
         Name = name;
         Description = description;
     }
+    
+    public VolunteerId VolunteerId { get; private set; }
 
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
     public string Name { get; private set; }
-
-    public Species Species { get; private set; }
+    
     public string Description { get; private set; }
 
+    public string Species { get; private set; }
+    
     public Breed Breed { get; private set; }
 
     public string HealthInfo { get; private set; } = string.Empty;
@@ -51,9 +55,12 @@ public class Pet : Shared.Entity<BaseId>
     
     public IReadOnlyList<PetPhoto> PetPhotos => _petPhotos.AsReadOnly();
 
-    public void AddDonationDetail(string detail)
+    public void AddDonationDetail(string name, string detail)
     {
-        _donationDetails.Add(new PaymentRequisite { Detail = detail });
+        // валидация
+        var paymentRequisite = new PaymentRequisite(name, detail);
+        
+        _donationDetails.Add(paymentRequisite);
     }
     
     public void AddPetPhoto(PetPhoto petPhoto)
@@ -61,7 +68,7 @@ public class Pet : Shared.Entity<BaseId>
   
     }
 
-    public static Result<Pet> Create(BaseId id, string name, string description)
+    public static Result<Pet> Create(PetId id, VolunteerId volunteerId, string name, string description)
     {
         if (string.IsNullOrWhiteSpace(name))
         {

@@ -1,10 +1,11 @@
 ﻿using CSharpFunctionalExtensions;
-using PetFamily.Domain.Shared;
 using PetFamily.Domain.ValueObjects;
+
+using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.Volunteers.VolunteerId>;
 
 namespace PetFamily.Domain.Volunteers;
 
-public class Volunteer : Shared.Entity<BaseId>
+public sealed class Volunteer : Entity
 {
     private readonly List<SocialNetwork> _socialNetwork = [];
 
@@ -12,11 +13,11 @@ public class Volunteer : Shared.Entity<BaseId>
 
     private readonly List<Pet> _ownedPets = [];
 
-    private Volunteer(BaseId id) : base(id)
+    private Volunteer(VolunteerId id) : base(id)
     {
     }
 
-    private Volunteer(BaseId volunteerId, string firstName, string biography) : base(volunteerId)
+    private Volunteer(VolunteerId volunteerId, string firstName, string biography) : base(volunteerId)
     {
         FirstName = firstName;
         Biography = biography;
@@ -42,19 +43,21 @@ public class Volunteer : Shared.Entity<BaseId>
 
     public IReadOnlyList<Pet> OwnedPets => _ownedPets.AsReadOnly();
 
-    public void UpdateSocialNetwork(SocialNetwork socialNetwork)
+    public void AddSocialNetwork(SocialNetwork socialNetwork)
     {
         // валидация
         _socialNetwork.Add(socialNetwork);
     }
 
-    public void AddDonationDetail(string detail)
+    public void AddDonationDetail(string name, string detail)
     {
         // валидация
-        _donationDetails.Add(new PaymentRequisite { Detail = detail });
+        var paymentRequisite = new PaymentRequisite(name, detail);
+        
+        _donationDetails.Add(paymentRequisite);
     }
 
-    public void UpdateOwnedPets(Pet pet)
+    public void AddPet(Pet pet)
     {
         // валидация
         _ownedPets.Add(pet);
@@ -75,7 +78,7 @@ public class Volunteer : Shared.Entity<BaseId>
         return 0;
     }
 
-    public static Result<Volunteer> Create(BaseId volunteerId, string firstName, string biography)
+    public static Result<Volunteer> Create(VolunteerId volunteerId, string firstName, string biography)
     {
         if (string.IsNullOrWhiteSpace(firstName))
         {

@@ -14,7 +14,7 @@ public class VolunteerController : Controller
     {
         var id = Guid.NewGuid();
         
-        var volunteerResult = Volunteer.Create(BaseId.NewId(), firstName, description);
+        var volunteerResult = Volunteer.Create(VolunteerId.NewId(), firstName, description);
 
         if (volunteerResult.IsFailure)
         {
