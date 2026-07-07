@@ -23,8 +23,12 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
             .HasColumnName("id");
 
         builder.Property(x => x.VolunteerId)
-            .IsRequired()
-            .HasColumnName("volunteer_id");
+            .HasConversion(
+                id => id.Value,
+                value => VolunteerId.Create(value)
+            )
+            .HasColumnName("volunteer_id")
+            .IsRequired();
 
         builder.Property(x => x.Name)
             .IsRequired()
@@ -129,5 +133,25 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
         builder.Property(x => x.IsVaccinated)
             .IsRequired()
             .HasColumnName("is_vaccinated");
+
+        builder.OwnsMany(x => x.DonationDetails, navigationBuilder => { navigationBuilder.ToJson(); });
+
+        builder.OwnsMany(x => x.PetPhotos, photoBuilder =>
+        {
+            photoBuilder.ToJson("pet_photos");
+
+            photoBuilder.Property(p => p.IsMain)
+                .HasJsonPropertyName("is_main");
+
+            photoBuilder.OwnsOne(p => p.File, fileBuilder =>
+            {
+                fileBuilder.Property(f => f.StoragePath)
+                    .HasJsonPropertyName("storage_path");
+            });
+        });
+
+        builder.Metadata
+            .FindNavigation(nameof(Pet.PetPhotos))?
+            .SetPropertyAccessMode(PropertyAccessMode.Field);
     }
 }

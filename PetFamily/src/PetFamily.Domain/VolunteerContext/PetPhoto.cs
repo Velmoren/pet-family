@@ -1,25 +1,28 @@
 ﻿using CSharpFunctionalExtensions;
+using PetFamily.Domain.ValueObjects;
 
 namespace PetFamily.Domain.VolunteerContext;
 
 public record PetPhoto
 {
-    private PetPhoto(string path)
-    {
-        StoragePath = path;
-    }
+    public MediaFile File { get; init; }
+    public bool IsMain { get; init; }
     
-    public string StoragePath { get; } = string.Empty;
-    
-    public bool IsMain { get; }
+    private PetPhoto() { }
 
-    public static Result<PetPhoto> Create(string path)
+    private PetPhoto(MediaFile file, bool isMain)
     {
-        if (string.IsNullOrWhiteSpace(path))
+        File = file;
+        IsMain = isMain;
+    }
+
+    public static Result<PetPhoto> Create(MediaFile file, bool isMain = false)
+    {
+        if (file == null)
         {
-            return Result.Failure<PetPhoto>("Path cannot be empty");
+            return Result.Failure<PetPhoto>("File info cannot be null.");
         }
 
-        return Result.Success(new PetPhoto(path));
+        return Result.Success(new PetPhoto(file, isMain));
     }
 }

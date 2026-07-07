@@ -61,7 +61,7 @@ public class VolunteerConfiguration : IEntityTypeConfiguration<Volunteer>
             .HasColumnName("email");
 
         builder.Property(x => x.ExperienceYears)
-            .IsRequired(false)
+            .IsRequired()
             .HasColumnName("experience_years");
 
         builder.OwnsMany(x => x.SocialNetworks, navigationBuilder =>
@@ -76,7 +76,7 @@ public class VolunteerConfiguration : IEntityTypeConfiguration<Volunteer>
 
         builder.HasMany(x => x.OwnedPets)
             .WithOne()
-            .HasForeignKey("volunteer_id")
+            .HasForeignKey(x => x.VolunteerId)
             .IsRequired(false);
         
         builder.Metadata

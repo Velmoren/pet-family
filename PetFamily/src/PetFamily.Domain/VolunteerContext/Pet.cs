@@ -13,11 +13,11 @@ public class Pet : Entity
     
     private readonly List<PetPhoto> _petPhotos = [];
     
-    private Pet(PetId petId) : base(petId)
+    private Pet(PetId id) : base(id)
     {
     }
     
-    private Pet(PetId petId, string name, string description) : base(petId)
+    private Pet(PetId id, string name, string description) : base(id)
     {
         Name = name;
         Description = description;
