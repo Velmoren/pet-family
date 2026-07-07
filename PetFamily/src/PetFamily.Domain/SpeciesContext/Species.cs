@@ -1,8 +1,8 @@
 ﻿using CSharpFunctionalExtensions;
 
-using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.Species.SpeciesId>;
+using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.SpeciesContext.SpeciesId>;
 
-namespace PetFamily.Domain.Species;
+namespace PetFamily.Domain.SpeciesContext;
 
 public class Species : Entity
 {
@@ -43,7 +43,7 @@ public class Species : Entity
         return Result.Success();
     }
     
-    internal static Result<Species> Create(SpeciesId id, string name)
+    public static Result<Species> Create(SpeciesId id, string name)
     {
         if (string.IsNullOrWhiteSpace(name))
         {

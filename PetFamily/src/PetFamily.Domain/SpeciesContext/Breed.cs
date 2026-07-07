@@ -1,8 +1,8 @@
 ﻿using CSharpFunctionalExtensions;
 
-using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.Species.BreedId>;
+using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.SpeciesContext.BreedId>;
 
-namespace PetFamily.Domain.Species;
+namespace PetFamily.Domain.SpeciesContext;
 
 public class Breed : Entity
 {

@@ -1,9 +1,9 @@
 ﻿using CSharpFunctionalExtensions;
 using PetFamily.Domain.ValueObjects;
 
-using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.Volunteers.VolunteerId>;
+using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.VolunteerContext.VolunteerId>;
 
-namespace PetFamily.Domain.Volunteers;
+namespace PetFamily.Domain.VolunteerContext;
 
 public sealed class Volunteer : Entity
 {
@@ -31,7 +31,7 @@ public sealed class Volunteer : Entity
 
     public string Biography { get; private set; }
 
-    public string PhoneNumber { get; private set; }
+    public PhoneNumber PhoneNumber { get; private set; }
 
     public Email EmailAddress { get; private set; }
 

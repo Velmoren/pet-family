@@ -1,10 +1,11 @@
 ﻿using CSharpFunctionalExtensions;
 using PetFamily.Domain.Enums;
 using PetFamily.Domain.ValueObjects;
+using PetFamily.Domain.SpeciesContext;
 
-using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.Volunteers.PetId>;
+using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.VolunteerContext.PetId>;
 
-namespace PetFamily.Domain.Volunteers;
+namespace PetFamily.Domain.VolunteerContext;
 
 public class Pet : Entity
 {
@@ -29,13 +30,13 @@ public class Pet : Entity
     
     public string Description { get; private set; }
 
-    public string Species { get; private set; }
+    public SpeciesId SpeciesId { get; private set; }
     
-    public Breed Breed { get; private set; }
+    public BreedId BreedId { get; private set; }
 
     public string HealthInfo { get; private set; } = string.Empty;
 
-    public string LocationAddress { get; private set; } = string.Empty;
+    public Address LocationAddress { get; private set; }
 
     public PhoneNumber ContactPhone { get; private set; }
 

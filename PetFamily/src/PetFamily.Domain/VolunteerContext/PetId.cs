@@ -1,6 +1,6 @@
 ﻿using PetFamily.Domain.ValueObjects;
 
-namespace PetFamily.Domain.Volunteers;
+namespace PetFamily.Domain.VolunteerContext;
 
 public record PetId : BaseId
 {

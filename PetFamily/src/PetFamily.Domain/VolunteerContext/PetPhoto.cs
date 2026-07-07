@@ -1,7 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
-using Microsoft.VisualBasic.CompilerServices;
 
-namespace PetFamily.Domain.Volunteers;
+namespace PetFamily.Domain.VolunteerContext;
 
 public record PetPhoto
 {

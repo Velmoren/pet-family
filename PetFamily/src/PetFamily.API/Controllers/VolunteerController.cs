@@ -1,7 +1,6 @@
 ﻿using CSharpFunctionalExtensions;
 using Microsoft.AspNetCore.Mvc;
-using PetFamily.Domain.Shared;
-using PetFamily.Domain.Volunteers;
+using PetFamily.Domain.VolunteerContext;
 
 namespace PetFamily.API.Controllers;
 
