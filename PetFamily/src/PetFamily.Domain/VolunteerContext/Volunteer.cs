@@ -1,4 +1,4 @@
-﻿using CSharpFunctionalExtensions;
+﻿using PetFamily.Domain.Shared;
 using PetFamily.Domain.ValueObjects;
 
 using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.VolunteerContext.VolunteerId>;
@@ -82,16 +82,14 @@ public sealed class Volunteer : Entity
     {
         if (string.IsNullOrWhiteSpace(firstName))
         {
-            return Result.Failure<Volunteer>("First name cannot be empty");
+            return "First name cannot be empty";
         }
 
         if (string.IsNullOrWhiteSpace(biography))
         {
-            return Result.Failure<Volunteer>("Biography cannot be empty");
+            return "Biography cannot be empty";
         }
 
-        var volunteer = new Volunteer(volunteerId, firstName, biography);
-
-        return Result.Success(volunteer);
+        return new Volunteer(volunteerId, firstName, biography);
     }
 }

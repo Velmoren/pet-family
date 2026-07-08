@@ -1,4 +1,4 @@
-﻿using CSharpFunctionalExtensions;
+﻿using PetFamily.Domain.Shared;
 
 namespace PetFamily.Domain.ValueObjects;
 
@@ -15,9 +15,9 @@ public record MediaFile
     {
         if (string.IsNullOrWhiteSpace(storagePath))
         {
-            return Result.Failure<MediaFile>("Storage path cannot be empty.");
+            return "Storage path cannot be empty.";
         }
 
-        return Result.Success(new MediaFile(storagePath));
+        return new MediaFile(storagePath);
     }
 }

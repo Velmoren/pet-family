@@ -1,5 +1,4 @@
-﻿using CSharpFunctionalExtensions;
-
+﻿using PetFamily.Domain.Shared;
 using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.SpeciesContext.SpeciesId>;
 
 namespace PetFamily.Domain.SpeciesContext;
@@ -47,11 +46,9 @@ public class Species : Entity
     {
         if (string.IsNullOrWhiteSpace(name))
         {
-            return Result.Failure<Species>("Name cannot be empty");
+            return "Name cannot be empty";
         }
 
-        var species = new Species(id, name);
-
-        return Result.Success(species);
+        return new Species(id, name);
     }
 }

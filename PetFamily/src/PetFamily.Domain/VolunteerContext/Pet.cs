@@ -1,5 +1,5 @@
-﻿using CSharpFunctionalExtensions;
-using PetFamily.Domain.Enums;
+﻿using PetFamily.Domain.Enums;
+using PetFamily.Domain.Shared;
 using PetFamily.Domain.ValueObjects;
 using PetFamily.Domain.SpeciesContext;
 
@@ -73,16 +73,14 @@ public class Pet : Entity
     {
         if (string.IsNullOrWhiteSpace(name))
         {
-            return Result.Failure<Pet>("Name cannot be empty");
+            return "Name cannot be empty";
         }
 
         if (string.IsNullOrEmpty(description))
         {
-            return Result.Failure<Pet>("Description cannot be empty");
+            return "Description cannot be empty";
         }
 
-        var pet = new Pet(id, name, description);
-
-        return Result.Success(pet);
+        return new Pet(id, name, description);
     }
 }

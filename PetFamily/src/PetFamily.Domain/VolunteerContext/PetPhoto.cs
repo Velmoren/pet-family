@@ -1,4 +1,4 @@
-﻿using CSharpFunctionalExtensions;
+﻿using PetFamily.Domain.Shared;
 using PetFamily.Domain.ValueObjects;
 
 namespace PetFamily.Domain.VolunteerContext;
@@ -20,9 +20,9 @@ public record PetPhoto
     {
         if (file == null)
         {
-            return Result.Failure<PetPhoto>("File info cannot be null.");
+            return "File info cannot be null.";
         }
 
-        return Result.Success(new PetPhoto(file, isMain));
+        return new PetPhoto(file, isMain);
     }
 }
