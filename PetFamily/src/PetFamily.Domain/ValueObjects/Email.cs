@@ -1,23 +1,36 @@
 ﻿using System.Text.RegularExpressions;
+using PetFamily.Domain.Shared;
 
 namespace PetFamily.Domain.ValueObjects;
 
-public record Email
+public partial record Email
 {
-    public string Value { get; init; }
+    // Регулярное выражение генерируется при компиляции с таймаутом в 1 секунду
+    [GeneratedRegex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase, 1000)]
+    private static partial Regex EmailRegex();
+    
+    public string Value { get; }
 
-    public Email(string value)
+    private Email(string value)
+    {
+        Value = value;
+    }
+
+    public static Result<Email> Create(string value)
     {
         if (string.IsNullOrWhiteSpace(value))
-            throw new ArgumentException("Email не может быть пустым.");
-
+        {
+            return "Email не может быть пустым.";
+        }
+        
         var trimmedEmail = value.Trim().ToLowerInvariant();
 
-        var emailRegex = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-        if (!Regex.IsMatch(trimmedEmail, emailRegex))
-            throw new ArgumentException("Неверный формат Email.");
+        if (!EmailRegex().IsMatch(trimmedEmail))
+        {
+            return "Неверный формат Email.";
+        }
 
-        Value = trimmedEmail;
+        return new Email(trimmedEmail);
     }
 
     public override string ToString() => Value;

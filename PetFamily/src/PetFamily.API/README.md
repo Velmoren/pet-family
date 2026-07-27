@@ -34,3 +34,13 @@ dotnet ef database update -p .\PetFamily.Infrastructure\ -s .\PetFamily.API\
 ```
 dotnet ef migrations script -p .\PetFamily.Infrastructure\ -s .\PetFamily.API\
 ```
+
+## Удаление БД.
+>drop - удалить БД
+>
+>-p .\PetFamily.Infrastructure\ - --project ${путь к проекту в котором создаем миграцию}
+>
+>-s .\PetFamily.API\ - --startup-project ${путь к проекту который будет главным для запуска}
+```
+dotnet ef database drop -p .\PetFamily.Infrastructure\ -s .\PetFamily.API\
+```

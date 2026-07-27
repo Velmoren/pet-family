@@ -41,30 +41,30 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
             .HasMaxLength(Constants.MAX_HIGHT_TEXT_LENGTH)
             .HasColumnName("description");
 
-        builder.ComplexProperty(x => x.LocationAddress, db =>
+        builder.ComplexProperty(x => x.LocationAddress, tb =>
         {
-            db.Property(a => a.Country)
+            tb.Property(a => a.Country)
                 .HasMaxLength(100)
                 .HasColumnName("address_country");
 
-            db.Property(a => a.City)
+            tb.Property(a => a.City)
                 .HasMaxLength(100)
                 .HasColumnName("address_city");
 
-            db.Property(a => a.Street)
+            tb.Property(a => a.Street)
                 .HasMaxLength(150)
                 .HasColumnName("address_street");
 
-            db.Property(a => a.House)
+            tb.Property(a => a.House)
                 .HasMaxLength(20)
                 .HasColumnName("address_house");
 
-            db.Property(a => a.Apartment)
+            tb.Property(a => a.Apartment)
                 .HasMaxLength(20)
                 .IsRequired(false)
                 .HasColumnName("address_apartment");
 
-            db.Property(a => a.PostalCode)
+            tb.Property(a => a.PostalCode)
                 .HasMaxLength(20)
                 .IsRequired(false)
                 .HasColumnName("address_postal_code");
@@ -73,7 +73,7 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
         builder.Property(x => x.ContactPhone)
             .HasConversion(
                 phone => phone.Value,
-                value => new PhoneNumber(value)
+                value => PhoneNumber.Create(value).Value
             )
             .IsRequired()
             .HasMaxLength(20)
@@ -134,18 +134,31 @@ public class PetConfiguration : IEntityTypeConfiguration<Pet>
             .IsRequired()
             .HasColumnName("is_vaccinated");
 
-        builder.OwnsMany(x => x.DonationDetails, navigationBuilder => { navigationBuilder.ToJson(); });
-
-        builder.OwnsMany(x => x.PetPhotos, photoBuilder =>
+        builder.OwnsMany(x => x.DonationDetails, tb =>
         {
-            photoBuilder.ToJson("pet_photos");
+            tb.ToJson("donation_details");
 
-            photoBuilder.Property(p => p.IsMain)
+            tb.Property(x => x.Name)
+                .HasMaxLength(Constants.MAX_LOW_TEXT_LENGTH)
+                .HasJsonPropertyName("name")
+                .IsRequired();
+
+            tb.Property(x => x.Description)
+                .HasMaxLength(Constants.MAX_HIGHT_TEXT_LENGTH)
+                .HasJsonPropertyName("description")
+                .IsRequired();
+        });
+
+        builder.OwnsMany(x => x.PetPhotos, tb =>
+        {
+            tb.ToJson("pet_photos");
+
+            tb.Property(p => p.IsMain)
                 .HasJsonPropertyName("is_main");
 
-            photoBuilder.OwnsOne(p => p.File, fileBuilder =>
+            tb.OwnsOne(p => p.File, stb =>
             {
-                fileBuilder.Property(f => f.StoragePath)
+                stb.Property(f => f.StoragePath)
                     .HasJsonPropertyName("storage_path");
             });
         });

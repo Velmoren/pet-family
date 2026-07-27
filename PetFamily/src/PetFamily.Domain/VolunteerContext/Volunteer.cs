@@ -1,11 +1,9 @@
 ﻿using PetFamily.Domain.Shared;
 using PetFamily.Domain.ValueObjects;
 
-using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.VolunteerContext.VolunteerId>;
-
 namespace PetFamily.Domain.VolunteerContext;
 
-public sealed class Volunteer : Entity
+public sealed class Volunteer : Entity<VolunteerId>
 {
     private readonly List<SocialNetwork> _socialNetwork = [];
 
@@ -17,25 +15,16 @@ public sealed class Volunteer : Entity
     {
     }
 
-    private Volunteer(VolunteerId volunteerId, string firstName, string biography) : base(volunteerId)
+    private Volunteer(VolunteerId volunteerId, VolunteerInfo volunteerInfo) : base(volunteerId)
     {
-        FirstName = firstName;
-        Biography = biography;
+        VolunteerInfo = volunteerInfo;
     }
 
-    public string FirstName { get; private set; }
-
-    public string LastName { get; private set; }
-
-    public string MiddleName { get; private set; }
-
-    public string Biography { get; private set; }
+    public VolunteerInfo VolunteerInfo { get; set; }
 
     public PhoneNumber PhoneNumber { get; private set; }
 
     public Email EmailAddress { get; private set; }
-
-    public int ExperienceYears { get; private set; }
 
     public IReadOnlyList<SocialNetwork> SocialNetworks => _socialNetwork.AsReadOnly();
 
@@ -52,9 +41,9 @@ public sealed class Volunteer : Entity
     public void AddDonationDetail(string name, string detail)
     {
         // валидация
-        var paymentRequisite = new PaymentRequisite(name, detail);
-        
-        _donationDetails.Add(paymentRequisite);
+        var paymentRequisite = PaymentRequisite.Create(name, detail);
+
+        _donationDetails.Add(paymentRequisite.Value);
     }
 
     public void AddPet(Pet pet)
@@ -78,18 +67,8 @@ public sealed class Volunteer : Entity
         return 0;
     }
 
-    public static Result<Volunteer> Create(VolunteerId volunteerId, string firstName, string biography)
+    public static Result<Volunteer> Create(VolunteerId volunteerId, VolunteerInfo volunteerInfo)
     {
-        if (string.IsNullOrWhiteSpace(firstName))
-        {
-            return "First name cannot be empty";
-        }
-
-        if (string.IsNullOrWhiteSpace(biography))
-        {
-            return "Biography cannot be empty";
-        }
-
-        return new Volunteer(volunteerId, firstName, biography);
+        return new Volunteer(volunteerId, volunteerInfo);
     }
 }

@@ -28,15 +28,15 @@ namespace PetFamily.Infrastructure.Migrations
                 columns: table => new
                 {
                     id = table.Column<Guid>(type: "uuid", nullable: false),
+                    phone = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
+                    email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
+                    biography = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: true),
+                    experience_years = table.Column<int>(type: "integer", nullable: true),
                     first_name = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     last_name = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: false),
                     middle_name = table.Column<string>(type: "character varying(128)", maxLength: 128, nullable: true),
-                    biography = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: true),
-                    phone = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    email = table.Column<string>(type: "character varying(256)", maxLength: 256, nullable: false),
-                    experience_years = table.Column<int>(type: "integer", nullable: false),
-                    DonationDetails = table.Column<string>(type: "jsonb", nullable: true),
-                    SocialNetworks = table.Column<string>(type: "jsonb", nullable: true)
+                    donation_details = table.Column<string>(type: "jsonb", nullable: true),
+                    social_networks = table.Column<string>(type: "jsonb", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -87,7 +87,7 @@ namespace PetFamily.Infrastructure.Migrations
                     address_house = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
                     address_postal_code = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: true),
                     address_street = table.Column<string>(type: "character varying(150)", maxLength: 150, nullable: false),
-                    DonationDetails = table.Column<string>(type: "jsonb", nullable: true),
+                    donation_details = table.Column<string>(type: "jsonb", nullable: true),
                     pet_photos = table.Column<string>(type: "jsonb", nullable: true)
                 },
                 constraints: table =>

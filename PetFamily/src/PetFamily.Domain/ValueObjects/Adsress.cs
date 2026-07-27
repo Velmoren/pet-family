@@ -1,32 +1,48 @@
-﻿namespace PetFamily.Domain.ValueObjects;
+﻿using PetFamily.Domain.Shared;
+
+namespace PetFamily.Domain.ValueObjects;
 
 public record Address
 {
-    public string Country { get; init; }
-    public string City { get; init; }
-    public string Street { get; init; }
-    public string House { get; init; }
-    public string Apartment { get; init; }
-    public string PostalCode { get; init; }
+    public string Country { get; }
+    public string City { get; }
+    public string Street { get; }
+    public string House { get; }
+    public string? Apartment { get; }
+    public string? PostalCode { get; }
 
-    public Address(string country, string city, string street, string house, string apartment = null, string postalCode = null)
+    private Address(string country, string city, string street, string house, string? apartment, string? postalCode)
     {
-        if (string.IsNullOrWhiteSpace(country)) throw new ArgumentException("Страна обязательна.");
-        if (string.IsNullOrWhiteSpace(city)) throw new ArgumentException("Город обязателен.");
-        if (string.IsNullOrWhiteSpace(street)) throw new ArgumentException("Улица обязательна.");
-        if (string.IsNullOrWhiteSpace(house)) throw new ArgumentException("Номер дома обязателен.");
-
-        Country = country.Trim();
-        City = city.Trim();
-        Street = street.Trim();
-        House = house.Trim();
-        Apartment = apartment?.Trim();
-        PostalCode = postalCode?.Trim();
+        Country = country;
+        City = city;
+        Street = street;
+        House = house;
+        Apartment = apartment;
+        PostalCode = postalCode;
     }
 
-    public override string ToString()
+    public static Result<Address> Create(string country, string city, string street, string house, string? apartment,
+        string? postalCode)
     {
-        var parts = new List<string> { PostalCode, Country, City, Street, House, Apartment };
-        return string.Join(", ", parts.Where(p => !string.IsNullOrWhiteSpace(p)));
+        var errors = new List<string>();
+
+        if (string.IsNullOrWhiteSpace(country)) errors.Add("Страна обязательна.");
+        if (string.IsNullOrWhiteSpace(city)) errors.Add("Город обязателен.");
+        if (string.IsNullOrWhiteSpace(street)) errors.Add("Улица обязательна.");
+        if (string.IsNullOrWhiteSpace(house)) errors.Add("Номер дома обязателен.");
+
+        if (errors.Any())
+        {
+            return string.Join(" ", errors);
+        }
+
+        return new Address(
+            country.Trim(),
+            city.Trim(),
+            street.Trim(),
+            house.Trim(),
+            apartment?.Trim(),
+            postalCode?.Trim()
+        );
     }
 }

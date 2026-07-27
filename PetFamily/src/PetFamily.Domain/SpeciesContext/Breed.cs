@@ -1,9 +1,8 @@
 ﻿using PetFamily.Domain.Shared;
-using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.SpeciesContext.BreedId>;
 
 namespace PetFamily.Domain.SpeciesContext;
 
-public class Breed : Entity
+public class Breed : Entity<BreedId>
 {
     private Breed(BreedId id) : base(id) { }
 

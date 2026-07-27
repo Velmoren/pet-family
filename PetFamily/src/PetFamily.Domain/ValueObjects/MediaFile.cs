@@ -4,7 +4,7 @@ namespace PetFamily.Domain.ValueObjects;
 
 public record MediaFile
 {
-    public string StoragePath { get; init; } = string.Empty;
+    public string StoragePath { get; } = string.Empty;
 
     private MediaFile(string storagePath)
     {

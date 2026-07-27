@@ -3,11 +3,9 @@ using PetFamily.Domain.Shared;
 using PetFamily.Domain.ValueObjects;
 using PetFamily.Domain.SpeciesContext;
 
-using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.VolunteerContext.PetId>;
-
 namespace PetFamily.Domain.VolunteerContext;
 
-public class Pet : Entity
+public class Pet : Entity<PetId>
 {
     private readonly List<PaymentRequisite> _donationDetails = [];
     
@@ -26,9 +24,9 @@ public class Pet : Entity
     public VolunteerId VolunteerId { get; private set; }
 
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
-    public string Name { get; private set; }
+    public string Name { get; private set; } = string.Empty;
     
-    public string Description { get; private set; }
+    public string Description { get; private set; } = string.Empty;
 
     public SpeciesId SpeciesId { get; private set; }
     
@@ -59,9 +57,9 @@ public class Pet : Entity
     public void AddDonationDetail(string name, string detail)
     {
         // валидация
-        var paymentRequisite = new PaymentRequisite(name, detail);
+        var paymentRequisite = PaymentRequisite.Create(name, detail);
         
-        _donationDetails.Add(paymentRequisite);
+        _donationDetails.Add(paymentRequisite.Value);
     }
     
     public void AddPetPhoto(PetPhoto petPhoto)

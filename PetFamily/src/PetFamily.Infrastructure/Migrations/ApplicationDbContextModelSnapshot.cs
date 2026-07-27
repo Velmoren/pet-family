@@ -185,43 +185,48 @@ namespace PetFamily.Infrastructure.Migrations
                         .HasColumnType("uuid")
                         .HasColumnName("id");
 
-                    b.Property<string>("Biography")
-                        .HasMaxLength(2000)
-                        .HasColumnType("character varying(2000)")
-                        .HasColumnName("biography");
-
                     b.Property<string>("EmailAddress")
                         .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("character varying(256)")
                         .HasColumnName("email");
 
-                    b.Property<int>("ExperienceYears")
-                        .HasColumnType("integer")
-                        .HasColumnName("experience_years");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)")
-                        .HasColumnName("first_name");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)")
-                        .HasColumnName("last_name");
-
-                    b.Property<string>("MiddleName")
-                        .HasMaxLength(128)
-                        .HasColumnType("character varying(128)")
-                        .HasColumnName("middle_name");
-
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)")
                         .HasColumnName("phone");
+
+                    b.ComplexProperty(typeof(Dictionary<string, object>), "VolunteerInfo", "PetFamily.Domain.VolunteerContext.Volunteer.VolunteerInfo#VolunteerInfo", b1 =>
+                        {
+                            b1.IsRequired();
+
+                            b1.Property<string>("Biography")
+                                .HasMaxLength(2000)
+                                .HasColumnType("character varying(2000)")
+                                .HasColumnName("biography");
+
+                            b1.Property<int?>("ExperienceYears")
+                                .HasColumnType("integer")
+                                .HasColumnName("experience_years");
+
+                            b1.Property<string>("FirstName")
+                                .IsRequired()
+                                .HasMaxLength(128)
+                                .HasColumnType("character varying(128)")
+                                .HasColumnName("first_name");
+
+                            b1.Property<string>("LastName")
+                                .IsRequired()
+                                .HasMaxLength(128)
+                                .HasColumnType("character varying(128)")
+                                .HasColumnName("last_name");
+
+                            b1.Property<string>("MiddleName")
+                                .HasMaxLength(128)
+                                .HasColumnType("character varying(128)")
+                                .HasColumnName("middle_name");
+                        });
 
                     b.HasKey("Id");
 
@@ -251,17 +256,21 @@ namespace PetFamily.Infrastructure.Migrations
                                 .ValueGeneratedOnAdd();
 
                             b1.Property<string>("Description")
-                                .IsRequired();
+                                .IsRequired()
+                                .HasMaxLength(2000)
+                                .HasJsonPropertyName("description");
 
                             b1.Property<string>("Name")
-                                .IsRequired();
+                                .IsRequired()
+                                .HasMaxLength(128)
+                                .HasJsonPropertyName("name");
 
                             b1.HasKey("PetId", "__synthesizedOrdinal");
 
                             b1.ToTable("pets");
 
                             b1
-                                .ToJson("DonationDetails")
+                                .ToJson("donation_details")
                                 .HasColumnType("jsonb");
 
                             b1.WithOwner()
@@ -326,17 +335,19 @@ namespace PetFamily.Infrastructure.Migrations
                                 .ValueGeneratedOnAdd();
 
                             b1.Property<string>("Name")
-                                .IsRequired();
+                                .IsRequired()
+                                .HasMaxLength(128);
 
                             b1.Property<string>("Url")
-                                .IsRequired();
+                                .IsRequired()
+                                .HasMaxLength(512);
 
                             b1.HasKey("VolunteerId", "__synthesizedOrdinal");
 
                             b1.ToTable("volunteers");
 
                             b1
-                                .ToJson("SocialNetworks")
+                                .ToJson("social_networks")
                                 .HasColumnType("jsonb");
 
                             b1.WithOwner()
@@ -351,17 +362,19 @@ namespace PetFamily.Infrastructure.Migrations
                                 .ValueGeneratedOnAdd();
 
                             b1.Property<string>("Description")
-                                .IsRequired();
+                                .IsRequired()
+                                .HasMaxLength(512);
 
                             b1.Property<string>("Name")
-                                .IsRequired();
+                                .IsRequired()
+                                .HasMaxLength(128);
 
                             b1.HasKey("VolunteerId", "__synthesizedOrdinal");
 
                             b1.ToTable("volunteers");
 
                             b1
-                                .ToJson("DonationDetails")
+                                .ToJson("donation_details")
                                 .HasColumnType("jsonb");
 
                             b1.WithOwner()

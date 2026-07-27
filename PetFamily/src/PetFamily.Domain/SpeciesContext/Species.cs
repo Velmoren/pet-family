@@ -1,9 +1,8 @@
 ﻿using PetFamily.Domain.Shared;
-using Entity = PetFamily.Domain.Shared.Entity<PetFamily.Domain.SpeciesContext.SpeciesId>;
 
 namespace PetFamily.Domain.SpeciesContext;
 
-public class Species : Entity
+public class Species : Entity<SpeciesId>
 {
     private readonly List<Breed> _breeds = [];
     
