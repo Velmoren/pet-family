@@ -1,15 +1,11 @@
-﻿namespace PetFamily.Domain.Shared;
+﻿namespace PetFamily.Domain.ValueObjects;
 
-public class BaseId 
+public abstract record BaseId 
 {
-    private BaseId(Guid value)
+    protected BaseId(Guid value)
     {
         Value = value;
     }
     
     public Guid Value { get; }
-    
-    public static BaseId NewId() => new(Guid.NewGuid());
-
-    public static BaseId Empty() => new(Guid.Empty);
 }

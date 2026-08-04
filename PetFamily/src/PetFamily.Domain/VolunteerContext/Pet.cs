@@ -1,37 +1,40 @@
-﻿using CSharpFunctionalExtensions;
-using PetFamily.Domain.Emuns;
+﻿using PetFamily.Domain.Enums;
 using PetFamily.Domain.Shared;
 using PetFamily.Domain.ValueObjects;
+using PetFamily.Domain.SpeciesContext;
 
-namespace PetFamily.Domain.Volunteers;
+namespace PetFamily.Domain.VolunteerContext;
 
-public class Pet : Shared.Entity<BaseId>
+public class Pet : Entity<PetId>
 {
     private readonly List<PaymentRequisite> _donationDetails = [];
     
     private readonly List<PetPhoto> _petPhotos = [];
     
-    private Pet(BaseId petId) : base(petId)
+    private Pet(PetId id) : base(id)
     {
     }
     
-    private Pet(BaseId petId, string name, string description) : base(petId)
+    private Pet(PetId id, string name, string description) : base(id)
     {
         Name = name;
         Description = description;
     }
+    
+    public VolunteerId VolunteerId { get; private set; }
 
     public DateTime CreatedAt { get; private set; } = DateTime.UtcNow;
-    public string Name { get; private set; }
+    public string Name { get; private set; } = string.Empty;
+    
+    public string Description { get; private set; } = string.Empty;
 
-    public Species Species { get; private set; }
-    public string Description { get; private set; }
-
-    public Breed Breed { get; private set; }
+    public SpeciesId SpeciesId { get; private set; }
+    
+    public BreedId BreedId { get; private set; }
 
     public string HealthInfo { get; private set; } = string.Empty;
 
-    public string LocationAddress { get; private set; } = string.Empty;
+    public Address LocationAddress { get; private set; }
 
     public PhoneNumber ContactPhone { get; private set; }
 
@@ -51,9 +54,12 @@ public class Pet : Shared.Entity<BaseId>
     
     public IReadOnlyList<PetPhoto> PetPhotos => _petPhotos.AsReadOnly();
 
-    public void AddDonationDetail(string detail)
+    public void AddDonationDetail(string name, string detail)
     {
-        _donationDetails.Add(new PaymentRequisite { Detail = detail });
+        // валидация
+        var paymentRequisite = PaymentRequisite.Create(name, detail);
+        
+        _donationDetails.Add(paymentRequisite.Value);
     }
     
     public void AddPetPhoto(PetPhoto petPhoto)
@@ -61,20 +67,18 @@ public class Pet : Shared.Entity<BaseId>
   
     }
 
-    public static Result<Pet> Create(BaseId id, string name, string description)
+    public static Result<Pet> Create(PetId id, VolunteerId volunteerId, string name, string description)
     {
         if (string.IsNullOrWhiteSpace(name))
         {
-            return Result.Failure<Pet>("Name cannot be empty");
+            return "Name cannot be empty";
         }
 
         if (string.IsNullOrEmpty(description))
         {
-            return Result.Failure<Pet>("Description cannot be empty");
+            return "Description cannot be empty";
         }
 
-        var pet = new Pet(id, name, description);
-
-        return Result.Success(pet);
+        return new Pet(id, name, description);
     }
 }
