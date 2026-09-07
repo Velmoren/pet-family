@@ -1,3 +1,4 @@
+using PetFamily.Application;
 using PetFamily.Infrastructure;
 using Scalar.AspNetCore;
 
@@ -8,6 +9,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddOpenApi(); 
 
 builder.Services.AddScoped<ApplicationDbContext>();
+
+builder.Services
+    .AddInfrastructure(builder.Configuration)
+    .AddApplication(builder.Configuration);
 
 var app = builder.Build();
 

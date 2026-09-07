@@ -20,7 +20,7 @@ public record PetPhoto
     {
         if (file == null)
         {
-            return "File info cannot be null.";
+            return Errors.General.ValueIsRequired("File");
         }
 
         return new PetPhoto(file, isMain);

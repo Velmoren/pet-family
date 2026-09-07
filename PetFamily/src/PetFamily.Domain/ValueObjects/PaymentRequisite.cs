@@ -17,12 +17,12 @@ public record PaymentRequisite
     {
         if (string.IsNullOrWhiteSpace(name))
         {
-            return "Название реквизита не может быть пустым.";
+            return Errors.General.ValueIsRequired("Name");
         }
 
         if (string.IsNullOrWhiteSpace(description))
         {
-            return "Описание перевода не может быть пустым.";
+            return Errors.General.ValueIsRequired("Description");
         }
 
         return new PaymentRequisite(name, description);

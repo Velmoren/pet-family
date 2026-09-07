@@ -36,7 +36,7 @@ public partial record SocialNetwork
 
         if (errors.Any())
         {
-            return string.Join(" ", errors);
+            return Errors.General.ValueIdInvalid(string.Join(" ", errors));
         }
 
         return new SocialNetwork(name.Trim(), url.Trim());

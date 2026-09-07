@@ -16,14 +16,14 @@ public record PhoneNumber
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            return "Номер телефона не может быть пустым.";
+            return Errors.General.ValueIsRequired("Value");
         }
 
         var cleaned = Regex.Replace(value, @"[^\d+]", "");
 
         if (!Regex.IsMatch(cleaned, @"^\+?\d{10,15}$"))
         {
-            return "Неверный формат номера телефона.";
+            return Errors.General.ValueIdInvalid("Value");
         }
 
         return new PhoneNumber(cleaned);

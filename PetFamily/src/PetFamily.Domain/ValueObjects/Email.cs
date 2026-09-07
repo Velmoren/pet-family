@@ -16,18 +16,18 @@ public partial record Email
         Value = value;
     }
 
-    public static Result<Email> Create(string value)
+    public static Result<Email> Create(string? value)
     {
         if (string.IsNullOrWhiteSpace(value))
         {
-            return "Email не может быть пустым.";
+            return Errors.General.ValueIsRequired("Email");
         }
         
         var trimmedEmail = value.Trim().ToLowerInvariant();
 
         if (!EmailRegex().IsMatch(trimmedEmail))
         {
-            return "Неверный формат Email.";
+            return Errors.General.ValueIdInvalid("Email.Pattern");
         }
 
         return new Email(trimmedEmail);
