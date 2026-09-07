@@ -33,7 +33,7 @@ public record Address
 
         if (errors.Any())
         {
-            return string.Join(" ", errors);
+            return Errors.General.ValueIsRequired(string.Join(" ", errors));
         }
 
         return new Address(

@@ -71,12 +71,12 @@ public class Pet : Entity<PetId>
     {
         if (string.IsNullOrWhiteSpace(name))
         {
-            return "Name cannot be empty";
+            return Errors.General.ValueIsRequired("Name");
         }
 
         if (string.IsNullOrEmpty(description))
         {
-            return "Description cannot be empty";
+            return Errors.General.ValueIsRequired("Description");
         }
 
         return new Pet(id, name, description);

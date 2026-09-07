@@ -15,9 +15,16 @@ public sealed class Volunteer : Entity<VolunteerId>
     {
     }
 
-    private Volunteer(VolunteerId volunteerId, VolunteerInfo volunteerInfo) : base(volunteerId)
+    public Volunteer(VolunteerId volunteerId, VolunteerInfo volunteerInfo, PhoneNumber phoneNumber, Email? emailAddress) : base(volunteerId)
     {
         VolunteerInfo = volunteerInfo;
+        PhoneNumber = phoneNumber;
+
+        if (emailAddress != null)
+        {
+            EmailAddress = emailAddress;
+        }
+   
     }
 
     public VolunteerInfo VolunteerInfo { get; set; }
@@ -46,10 +53,12 @@ public sealed class Volunteer : Entity<VolunteerId>
         _donationDetails.Add(paymentRequisite.Value);
     }
 
-    public void AddPet(Pet pet)
+    public Result AddPet(Pet pet)
     {
         // валидация
         _ownedPets.Add(pet);
+
+        return Result.Success();
     }
 
     public int GetAdoptedPetsCount()
@@ -67,8 +76,8 @@ public sealed class Volunteer : Entity<VolunteerId>
         return 0;
     }
 
-    public static Result<Volunteer> Create(VolunteerId volunteerId, VolunteerInfo volunteerInfo)
+    public static Result<Volunteer> Create(VolunteerId volunteerId, VolunteerInfo volunteerInfo, PhoneNumber phoneNumber, Email? emailAddress)
     {
-        return new Volunteer(volunteerId, volunteerInfo);
+        return new Volunteer(volunteerId, volunteerInfo, phoneNumber, emailAddress);
     }
 }

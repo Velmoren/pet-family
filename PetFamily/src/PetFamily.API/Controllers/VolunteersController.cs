@@ -1,60 +1,66 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PetFamily.API.Extensions;
 using PetFamily.Application.Volunteers.CreateVolunteer;
+using PetFamily.Application.Volunteers.GetByIdVolunteer;
+using PetFamily.Application.Volunteers.GetVolunteer;
 using PetFamily.Application.Volunteers.UpdateVolunteer;
-using PetFamily.Domain.ValueObjects;
-using PetFamily.Domain.VolunteerContext;
 
 namespace PetFamily.API.Controllers;
 
-[ApiController]
-[Route("[controller]")]
-public class VolunteersController : Controller
+public class VolunteersController : ApplicationController
 {
-    [HttpGet]
-    public IActionResult Get(Guid id)
+    [HttpPost]
+    public async Task<IActionResult> Create(
+        [FromServices] CreateVolunteerHandler handler,
+        [FromBody] CreateVolunteerRequest request,
+        CancellationToken cancellationToken = default
+    )
     {
-        var file = MediaFile.Create("Test").Value;
+        var result = await handler.Handle(request, cancellationToken);
 
-        List<MediaFile> fileList = [file, file, file];
+        if (result.IsFailure) return result.Error.ToResponse();
 
-        return Ok(fileList);
+        return Ok(result.Value);
     }
 
-    [HttpPost]
-    public IActionResult Create([FromBody] CreateVolunteerRequest request)
+    [HttpGet]
+    public async Task<IActionResult> Get(
+        [FromServices] GetVolunteerHandler handler,
+        CancellationToken cancellationToken = default
+    )
     {
-        var volunteerResult = Volunteer.Create(
-            VolunteerId.NewId(),
-            VolunteerInfo.Create(
-                request.FirstName,
-                request.LastName,
-                request.MiddleName,
-                request.Biography,
-                request.ExperienceYears
-            ).Value);
+        var result = await handler.Handle(cancellationToken);
 
-        if (volunteerResult.IsFailure)
-        {
-            return BadRequest(volunteerResult.Error);
-        }
+        return Ok(result.Value);
+    }
 
+    [HttpGet("{id:guid}")]
+    public async Task<IActionResult> GetById(
+        [FromServices] GetByIdVolunteerHandler handler,
+        [FromRoute] GetByIdVolunteerRequest request,
+        CancellationToken cancellationToken = default
+    )
+    {
+        var result = await handler.Handle(request, cancellationToken);
+        
+        if (result.IsFailure) return result.Error.ToResponse();
+        
         return Ok();
     }
-    
+
     [HttpPut("{id:guid}")]
     public IActionResult Update([FromRoute] Guid id, [FromBody] UpdateVolunteerDto dto)
     {
         var request = new UpdateVolunteerCommand(id, dto);
- 
+
         return Ok();
     }
-    
+
     [HttpQuery]
     public IActionResult Search([FromRoute] Guid id, [FromBody] UpdateVolunteerDto dto)
     {
         var request = new UpdateVolunteerCommand(id, dto);
- 
+
         return Ok();
     }
 };

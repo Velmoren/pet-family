@@ -15,7 +15,7 @@ public record MediaFile
     {
         if (string.IsNullOrWhiteSpace(storagePath))
         {
-            return "Storage path cannot be empty.";
+            return Errors.General.ValueIsRequired("StoragePath");
         }
 
         return new MediaFile(storagePath);

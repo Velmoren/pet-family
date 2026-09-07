@@ -17,7 +17,7 @@ public class Breed : Entity<BreedId>
     {
         if (string.IsNullOrWhiteSpace(name))
         {
-            return "Name cannot be empty";
+            return Errors.General.ValueIsRequired("Name");
         }
 
         return new Breed(id, name);

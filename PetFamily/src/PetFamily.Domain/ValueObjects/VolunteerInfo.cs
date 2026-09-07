@@ -1,4 +1,5 @@
-﻿using PetFamily.Domain.Shared;
+﻿using System.Text.RegularExpressions;
+using PetFamily.Domain.Shared;
 
 namespace PetFamily.Domain.ValueObjects;
 
@@ -11,9 +12,9 @@ public record VolunteerInfo
     public string MiddleName { get; }
 
     public string Biography { get; }
-    
+
     public int? ExperienceYears { get; }
-    
+
     private VolunteerInfo(string firstName, string lastName, string middleName, string biography, int? experienceYears)
     {
         FirstName = firstName;
@@ -23,10 +24,16 @@ public record VolunteerInfo
         ExperienceYears = experienceYears;
     }
 
-    public static Result<VolunteerInfo> Create(string firstName, string lastName, string middleName, string biography, int? experienceYears)
+    public static Result<VolunteerInfo> Create(
+        string firstName,
+        string lastName,
+        string middleName,
+        string biography,
+        int? experienceYears
+    )
     {
         var errors = new List<string>();
-        
+
         if (string.IsNullOrWhiteSpace(firstName))
             errors.Add("Имя волонтера не может быть пустым.");
         else if (firstName.Length > 100)
@@ -47,7 +54,7 @@ public record VolunteerInfo
             errors.Add("Биография не может быть пустой.");
         else if (biography.Length > 2000)
             errors.Add("Биография не может превышать 2000 символов.");
-        
+
         // 5. Валидация Опыта
         if (experienceYears.HasValue)
         {
@@ -60,14 +67,14 @@ public record VolunteerInfo
         // Если есть хоть одна ошибка — склеиваем их и возвращаем через неявное приведение типов Result
         if (errors.Any())
         {
-            return string.Join(" ", errors);
+            return Errors.General.ValueIdInvalid(string.Join(" ", errors));
         }
-        
+
         return new VolunteerInfo(
-            firstName.Trim(), 
-            lastName.Trim(), 
+            firstName.Trim(),
+            lastName.Trim(),
             middleName?.Trim() ?? string.Empty, // Защищаем от null, если отчество не передано
-            biography.Trim(), 
+            biography.Trim(),
             experienceYears);
     }
 }
